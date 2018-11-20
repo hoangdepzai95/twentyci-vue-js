@@ -80,6 +80,11 @@ class MockApi {
     }
 
     maxBy(arr, field) {
+
+        if (!arr.length) {
+            return 0;
+        }
+
         return arr.map((o) => o[field]).reduce((a, b) => {
             return Math.max(a, b);
         });
