@@ -28,7 +28,7 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    const loggedIn = localStorage.getItem('token');
+    const loggedIn = !!localStorage.getItem('token');
 
     if (to.matched.some((record) => record.meta.auth) && !loggedIn) {
         next({

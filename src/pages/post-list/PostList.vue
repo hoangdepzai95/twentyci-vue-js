@@ -34,9 +34,13 @@
 
 <script>
 import api from '../../mocks/mock-api';
+import PostForm from './PostForm.vue';
 
 export default {
     name: 'PostList',
+    components: {
+      'post-form': PostForm
+    },
 
     data: () => {
         return {

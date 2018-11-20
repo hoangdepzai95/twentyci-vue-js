@@ -46,7 +46,6 @@ export default {
 
             api.login(userName, password)
                 .then((res) => {
-
                     localStorage.setItem('token', res.token);
                     this.$root.loggedIn = true;
 
