@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './pages/Login.vue';
 import PostList from './pages/post-list/PostList.vue';
+import Post from './pages/Post.vue';
 
 Vue.use(Router)
 
@@ -13,6 +14,12 @@ const router = new Router({
             path: '/post-list',
             name: 'post-list',
             component: PostList,
+            meta: { auth: true }
+        },
+        {
+            path: '/post/:id',
+            name: 'post',
+            component: Post,
             meta: { auth: true }
         },
         {

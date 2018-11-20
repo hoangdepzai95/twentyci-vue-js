@@ -49,7 +49,7 @@ export default {
         cancel() {
             this.$parent.close();
         },
-        
+
         submit() {
             const form = this.$refs.form;
 
