@@ -1,34 +1,37 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Login from './pages/Login.vue';
+import PostList from './pages/post-list/PostList.vue';
 
 Vue.use(Router)
 
 const router = new Router({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-    }
-  ]
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes: [
+        {
+            path: '/post-list',
+            name: 'post-list',
+            component: PostList,
+            meta: {auth: true}
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login,
+        },
+        {
+            path: '**',
+            redirect: '/post-list',
+        },
+    ]
 });
 
 router.beforeEach((to, from, next) => {
     if (to.matched.some((record) => record.meta.auth) && !router.app.loggedIn) {
         next({
             path: '/login',
-            query: { redirect: to.fullPath }
+            query: {redirect: to.fullPath}
         });
     } else if (to.matched.some((record) => record.path === '/login') && router.app.loggedIn) {
         next({
