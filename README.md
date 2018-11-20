@@ -15,15 +15,11 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
+## Test account
 
-### Lints and fixes files
-```
-npm run lint
-```
+user name: demo
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+password: demo
+
+## Demo video
+[Link to demo](https://www.youtube.com/watch?v=7EVylTREqJk)
