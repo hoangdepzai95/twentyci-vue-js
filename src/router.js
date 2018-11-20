@@ -13,7 +13,7 @@ const router = new Router({
             path: '/post-list',
             name: 'post-list',
             component: PostList,
-            meta: {auth: true}
+            meta: { auth: true }
         },
         {
             path: '/login',
@@ -28,12 +28,14 @@ const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-    if (to.matched.some((record) => record.meta.auth) && !router.app.loggedIn) {
+    const loggedIn = localStorage.getItem('token');
+
+    if (to.matched.some((record) => record.meta.auth) && !loggedIn) {
         next({
             path: '/login',
             query: {redirect: to.fullPath}
         });
-    } else if (to.matched.some((record) => record.path === '/login') && router.app.loggedIn) {
+    } else if (to.matched.some((record) => record.path === '/login') && loggedIn) {
         next({
             path: '/post-list',
         });
