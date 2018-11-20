@@ -10,7 +10,7 @@
 <script>
 
 export default {
-    name: 'Input',
+    name: 'FormInput',
     props: ['validators', 'name', 'type', 'errText', 'placeHolder', 'defaultValue'],
     data: () => {
         return {

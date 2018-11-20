@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import Input from './Input.vue';
+import Input from './FormInput.vue';
 import Form from './Form.vue';
 import Popup from './Popup.vue';
 import Loading from './Loading.vue';
