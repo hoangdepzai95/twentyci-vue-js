@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -22,4 +22,21 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
     }
   ]
-})
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((record) => record.meta.auth) && !router.app.loggedIn) {
+        next({
+            path: '/login',
+            query: { redirect: to.fullPath }
+        });
+    } else if (to.matched.some((record) => record.path === '/login') && router.app.loggedIn) {
+        next({
+            path: '/post-list',
+        });
+    } else {
+        next();
+    }
+});
+
+export default router;
