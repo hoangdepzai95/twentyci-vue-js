@@ -11,7 +11,7 @@ export default {
         logOut() {
             this.$root.loggedIn = false;
             localStorage.removeItem('token');
-            this.$router.push('login');
+            this.$router.push('/login');
         }
     }
 }

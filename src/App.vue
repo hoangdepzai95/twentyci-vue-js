@@ -1,5 +1,6 @@
 <template>
     <div id="app">
+        <app-loading v-if="isLoading"></app-loading>
         <app-header v-if="$root.loggedIn"></app-header>
         <router-view/>
     </div>
@@ -7,14 +8,26 @@
 
 <script>
 import Header from './layouts/Header.vue';
+import api from './mocks/mock-api';
 
 export default {
     name: 'App',
     components: {
         'app-header': Header
     },
+
+    data: () => {
+        return {
+            isLoading: false
+        }
+    },
+
     created() {
         this.$root.loggedIn = !!localStorage.getItem('token');
+
+        api.subscribe((isLoading) => {
+            this.isLoading = isLoading;
+        });
     }
 }
 </script>

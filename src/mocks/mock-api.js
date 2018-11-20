@@ -1,11 +1,25 @@
-const DELAY = 200;
+const DELAY = 250;
 const DB_KEY = 'mock-db';
 
 class MockApi {
 
+    subscriptions = [];
+
     constructor() {
         if (!localStorage.getItem('didInit')) {
             this.initData();
+        }
+    }
+
+    subscribe(fn) {
+        if (typeof fn === 'function') {
+            this.subscriptions.push(fn);
+        }
+    }
+
+    emitLoadingSate(loading) {
+        for (let sub of this.subscriptions) {
+            sub(loading);
         }
     }
 
@@ -97,12 +111,16 @@ class MockApi {
 
     doRequest(response, err = false){
         return new Promise( (resolve, reject) => {
+            this.emitLoadingSate(true);
+
             setTimeout(() => {
                 if (err) {
                     reject(response);
                 } else {
                     resolve(response);
                 }
+
+                this.emitLoadingSate(false);
             }, DELAY);
         });
     }

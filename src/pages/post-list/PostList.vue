@@ -16,7 +16,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="post in posts">
+                <tr v-for="post in posts" :key="post.id">
                     <td><router-link :to="'/post/' + post.id">{{ post.title | cutLongText }}</router-link></td>
                     <td>{{ post.content | cutLongText  }}</td>
                     <td>
