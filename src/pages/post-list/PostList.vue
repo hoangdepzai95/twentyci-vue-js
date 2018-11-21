@@ -6,6 +6,9 @@
                 <app-popup v-model="showCreateForm">
                     <post-form mode="create" :post="currentPost"></post-form>
                 </app-popup>
+                <app-popup v-model="showEditForm">
+                    <post-form mode="edit" :post="currentPost"></post-form>
+                </app-popup>
             </div>
             <table>
                 <thead>
@@ -21,9 +24,6 @@
                     <td>{{ post.content | cutLongText  }}</td>
                     <td>
                         <a @click="openEditForm(post)">Edit</a> | <a @click="deletePost(post.id)">Delete</a>
-                        <app-popup v-model="showEditForm">
-                            <post-form mode="edit" :post="currentPost"></post-form>
-                        </app-popup>
                     </td>
                 </tr>
                 </tbody>
