@@ -17,7 +17,7 @@ export default {
         }
     },
 
-    mounted() {
+    created() {
         const postId = +this.$router.currentRoute.params['id'];
 
         api.getPost(postId)
