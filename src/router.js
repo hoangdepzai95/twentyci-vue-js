@@ -7,7 +7,6 @@ import Post from './pages/Post.vue';
 Vue.use(Router)
 
 const router = new Router({
-    mode: 'history',
     base: process.env.BASE_URL,
     routes: [
         {
